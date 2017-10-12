@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Calculando o cpf</title>
+    <script type="text/javascript">
+    function calcular(){    
+    var cpf = "28591034813";
+    var m1 = [10,9,8,7,6,5,4,3,2];
+    var m2 = [11,10,9,8,7,6,5,4,3,2];
+    var rs = 0;
+    var cpf9 = cpf.substring(0,9);
+    var digito1;
+    var digito2;
+    for(i = 0 ; i < cpf9.length; i++){
+
+        rs+= parseInt(cpf9[i])*m1[i];
+       
+    }
+
+    var rs1 = rs % 11;
+
+    if(rs1 <2){
+        digito1 = "0";
+    }
+    else{
+        digito1 = 11 - rs1;
+    }
+
+    cpf9+=digito1.toString();
+    rs = 0;
+
+    for(i = 0 ; i < m2.length; i++){
+    rs+=parseInt(cpf9[i])*m2[i];
+    }
+
+
+    rs1 = rs % 11;
+
+    if(rs1 < 2){
+        digito2 = "0";
+    }
+    else{
+        digito2 = 11 - rs1;
+    }
+    cpf9+=""+digito2;
+    document.getElementById("dados").innerHTML=cpf9;
+    }
+
+    </script>
+</head>
+<body>
+    <div id="dados"></div>
+    <button value="clique" onclick="calcular()">Clique</button>
+</body>
+</html>
